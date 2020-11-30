@@ -1,5 +1,14 @@
 <template>
   <div>
+    <div class="title">
+      <van-nav-bar
+        title="注册"
+        left-text=""
+        left-arrow
+        @click-left="onClickLeft"
+      >
+      </van-nav-bar>
+    </div>
     <van-form @submit="onSubmit">
       <van-field
         v-model="username"
@@ -46,9 +55,21 @@ export default {
     onSubmit(values) {
       console.log("submit", values);
     },
+    onClickLeft(){
+      this.$router.push({path:'/logIn'});
+    }
   },
 };
 </script>
 
-<style>
+<style scoped>
+.title /deep/ .van-nav-bar__content {
+  background-color: #f2f2f2;
+}
+.title /deep/ .van-nav-bar__title {
+  color: rgb(102, 102, 102);
+}
+.title /deep/ .van-nav-bar .van-icon {
+  color: rgb(102, 102, 102);
+}
 </style>

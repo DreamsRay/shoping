@@ -34,7 +34,6 @@
         <div @click="Commodity"><img :src="item.img" alt="" /></div>
         <div class="introduce">
           <div>{{ item.name }}</div>
-          <div>{{ item.recommend }}</div>
           <div>
             <span>￥{{ item.price }}起 </span
             ><span> ￥{{ item.priceOld }}</span>
@@ -57,7 +56,6 @@
         <div><img :src="item.img" alt="" /></div>
         <div class="introduce">
           <div>{{ item.name }}</div>
-          <div>{{ item.recommend }}</div>
           <div>
             <span>￥{{ item.price }}起 </span
             ><span> ￥{{ item.priceOld }}</span>
@@ -80,7 +78,6 @@
         <div><img :src="item.img" alt="" /></div>
         <div class="introduce">
           <div>{{ item.name }}</div>
-          <div>{{ item.recommend }}</div>
           <div>
             <span>￥{{ item.price }}起 </span
             ><span> ￥{{ item.priceOld }}</span>
@@ -109,35 +106,35 @@ export default {
       redmi: [
         {
           name: "Redmi K30 4G",
-          img: "../../../static/img/redmi.jpg",
+          img: "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
           recommend: "120Hz流速屏，全速热爱",
           price: 1722,
           priceOld: "2231",
         },
         {
           name: "Redmi K30 4G",
-          img: "../../../static/img/redmi.jpg",
+          img: "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
           recommend: "120Hz流速屏，全速热爱",
           price: 1722,
           priceOld: "2231",
         },
         {
           name: "Redmi K30 4G",
-          img: "../../../static/img/redmi.jpg",
+          img: "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
           recommend: "120Hz流速屏，全速热爱",
           price: 1722,
           priceOld: "2231",
         },
         {
           name: "Redmi K30 4G",
-          img: "../../../static/img/redmi.jpg",
+          img: "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
           recommend: "120Hz流速屏，全速热爱",
           price: 1722,
           priceOld: "2231",
         },
         {
           name: "Redmi K30 4G",
-          img: "../../../static/img/redmi.jpg",
+          img: "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
           recommend: "120Hz流速屏，全速热爱",
           price: 1722,
           priceOld: "2231",
@@ -146,21 +143,21 @@ export default {
       miTelevision:[
         {
           name: "小米电视4A 65英寸",
-          img: "../../../static/img/miTelevision/television1.jpg",
+          img: "//gw3.alicdn.com/bao/uploaded/i1/782731205/O1CN01F13vhd1KlvtuGz8rj_!!0-item_pic.jpg_210x210.jpg",
           recommend: "4K HDR，人工智能语音系统",
           price: 2799,
           priceOld: "3231",
         },
         {
           name: "小米电视4A 65英寸",
-          img: "../../../static/img/miTelevision/television1.jpg",
+          img: "//gw3.alicdn.com/bao/uploaded/i1/782731205/O1CN01F13vhd1KlvtuGz8rj_!!0-item_pic.jpg_210x210.jpg",
           recommend: "4K HDR，人工智能语音系统",
           price: 2799,
           priceOld: "3231",
         },
         {
           name: "小米电视4A 65英寸",
-          img: "../../../static/img/miTelevision/television1.jpg",
+          img: "//gw3.alicdn.com/bao/uploaded/i1/782731205/O1CN01F13vhd1KlvtuGz8rj_!!0-item_pic.jpg_210x210.jpg",
           recommend: "4K HDR，人工智能语音系统",
           price: 2799,
           priceOld: "3231",
@@ -169,7 +166,7 @@ export default {
       miBook:[
         {
           name: '小米笔记本15.6" MX110 独显版',
-          img: "../../../static/img/mibook/redMibook.jpg",
+          img: "//gw3.alicdn.com/bao/uploaded/i2/291333743/O1CN01eSQfUo1dWL6lYIwKa_!!291333743.png_210x210.jpg",
           recommend: "4K HDR，人工智能语音系统",
           price: 2799,
           priceOld: "3231",
@@ -193,6 +190,9 @@ export default {
 </script>
 
 <style scoped>
+.background{
+  background-color: #f2f2f2;
+}
 .my-swipe .van-swipe-item {
   color: #fff;
   font-size: 20px;
@@ -233,10 +233,14 @@ export default {
   padding: 5px;
 }
 .items > div {
-  width: 48%;
-  padding: 1% 1%;
+    width: 45%;
+    margin: 3% 2%;
+    background-color: #ffff;
+    border-radius: 5px;
 }
 .items > div img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   width: 100%;
   height: 100%;
 }
@@ -244,6 +248,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: .5rem 0;
 }
 .introduce div {
   margin: 2% 0;
@@ -251,10 +256,10 @@ export default {
 .introduce > div:nth-child(2) {
   color: rgba(0, 0, 0, 0.54);
 }
-.introduce > div:nth-child(3) > span:nth-child(1) {
+.introduce > div:nth-child(2) > span:nth-child(1) {
   color: #ea625b;
 }
-.introduce > div:nth-child(3) > span:nth-child(2) {
+.introduce > div:nth-child(2) > span:nth-child(2) {
   font-weight: 100;
   text-decoration: line-through;
   font-size: 12px;

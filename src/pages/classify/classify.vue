@@ -1,12 +1,14 @@
 <template>
   <div>
-      <div class="title">
-    <van-nav-bar title="分类" left-text="" left-arrow @click-left="onClickLeft">
-      <!-- <template #right>
-        <van-icon name="search" size="18" />
-      </template> -->
-    </van-nav-bar>
-      </div>
+    <div class="title">
+      <van-nav-bar
+        title="分类"
+        left-text=""
+        left-arrow
+        @click-left="onClickLeft"
+      >
+      </van-nav-bar>
+    </div>
     <van-tree-select
       height="100vh"
       :items="items"
@@ -39,15 +41,14 @@ export default {
   data() {
     return {
       active: 0,
-      items: [{ text: "分组 1" },
-       { text: "分组 2" }],
+      items: [{ text: "分组 1" }, { text: "分组 2" }],
     };
   },
-  methods:{
-      onClickLeft(){
-          this.$router.push({path:'/'});
-      }
-  }
+  methods: {
+    onClickLeft() {
+      this.$router.push({ path: "/" });
+    },
+  },
 };
 </script>
 
@@ -57,20 +58,20 @@ export default {
 }
 .van-tree-select__nav-item {
   text-align: center;
-  transition:font-size .2s;
+  transition: font-size 0.2s;
 }
 .van-sidebar-item--select,
 .van-sidebar-item--select:active {
-  color:#fb7d34;
+  color: #fb7d34;
   font-size: 1.3rem;
 }
-.title /deep/ .van-nav-bar__content{
-        background-color: #f2f2f2;
+.title /deep/ .van-nav-bar__content {
+  background-color: #f2f2f2;
 }
-.title /deep/ .van-nav-bar__title{
-    color: rgb(102, 102, 102);
+.title /deep/ .van-nav-bar__title {
+  color: rgb(102, 102, 102);
 }
-.title /deep/ .van-nav-bar .van-icon{
-    color: rgb(102, 102, 102);
+.title /deep/ .van-nav-bar .van-icon {
+  color: rgb(102, 102, 102);
 }
 </style>

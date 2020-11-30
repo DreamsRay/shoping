@@ -3,35 +3,50 @@
     <div class="title">
       <van-nav-bar
         left-arrow
-        v-if="this.compile == true"
         title="购物车"
-        right-text="编辑"
         @click-right="onClickRight"
         @click-left="onClickLeft"
       />
-      <van-nav-bar
-        v-else
-        title="购物车"
-        right-text="完成"
-        @click-right="Right"
-      />
     </div>
-    <van-card
-      :price="price.toFixed(2)"
-      desc="描述信息"
-      title="商品标题"
-      thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-    >
-      <template #footer>
-        <van-stepper @change="onChange(value)" v-model="value" />
-      </template>
-    </van-card>
-    <van-submit-bar :price="total"  v-if="this.compile == true" button-text="提交订单" @submit="onSubmit">
-      <van-checkbox v-model="checked">全选</van-checkbox>
-    </van-submit-bar>
-    <van-submit-bar class="delete" v-else button-text="删除" @submit="onSubmit">
-      <van-checkbox v-model="checked">全选</van-checkbox>
-    </van-submit-bar>
+    <div v-if="this.empty == false">
+      <div class="items" v-for="(item, index) in goods" :key="index">
+        <div class="item">
+          <van-checkbox
+            style="padding: 0 0.5rem"
+            v-model="item.isChecked"
+            checked-color="#fc5232"
+          ></van-checkbox>
+          <div>
+            <img :src="item.img" alt="" />
+          </div>
+        </div>
+        <div class="details">
+          <span>{{ item.name }}</span>
+          <span style="color: #999">售价：￥{{ item.price.toFixed(2) }}</span>
+          <div class="stepper">
+            <van-stepper min="1" :max="item.stock" v-model="item.amount" />
+            <i class="ion" @click="DeleteGoods(index)"></i>
+          </div>
+        </div>
+      </div>
+      <van-submit-bar
+        :price="totalPrice"
+        button-text="提交订单"
+        @submit="onSubmit"
+      >
+        <van-checkbox
+          v-model="checkAll"
+          @click="checkOne()"
+          checked-color="#fc5232"
+          >全选</van-checkbox
+        >
+      </van-submit-bar>
+    </div>
+    <div v-else>
+      <van-empty description="购物车竟然是空的" image="https://img.yzcdn.cn/vant/custom-empty-image.png">
+        <van-button type="default">去逛逛</van-button>
+      </van-empty>
+    </div>
   </div>
 </template>
 
@@ -39,19 +54,82 @@
 export default {
   data() {
     return {
-      compile: true,
-      checked: false,
       value: 1,
       price: 2,
       total: 0,
+      empty: false,
+      goods: [
+        {
+          id: 1,
+          name: "电脑",
+          price: 100,
+          img: "../../../static/img/miTelevision/television.jpg",
+          amount: 1,
+          isChecked: false,
+          stock: 3,
+        },
+        {
+          id: 2,
+          name: "手机",
+          price: 200,
+          img: "https://img.yzcdn.cn/vant/cat.jpeg",
+          amount: 1,
+          isChecked: true,
+          stock: 10,
+        },
+        {
+          id: 3,
+          name: "电视",
+          price: 300,
+          img: "../../../static/img/miTelevision/television.jpg",
+          amount: 2,
+          isChecked: false,
+          stock: 5,
+        },
+        {
+          id: 3,
+          name: "电视",
+          price: 300,
+          img: "../../../static/img/miTelevision/television.jpg",
+          amount: 2,
+          isChecked: false,
+          stock: 5,
+        },
+      ],
     };
   },
-  mounted() {
-    console.log(this.value);
+  mounted() {},
+  watch: {
+    goods(e) {
+      if (e.length == 0) {
+        this.empty = true;
+      } else {
+        this.empty = false;
+      }
+    },
+  },
+  computed: {
+    totalPrice() {
+      var total = 0;
+      this.goods.forEach((item, index) => {
+        if (item.isChecked == true) {
+          total += item.amount * item.price;
+        }
+      });
+      return total * 100;
+    },
+    checkAll: {
+      get() {
+        return this.goods.every((item) => {
+          return item.isChecked;
+        });
+      },
+      set() {},
+    },
   },
   methods: {
-    onClickLeft(){
-      this.$router.push({path:'/'});
+    onClickLeft() {
+      this.$router.push({ path: "/" });
     },
     onClickRight() {
       this.compile = false;
@@ -59,12 +137,26 @@ export default {
     Right() {
       this.compile = true;
     },
-    onChange(value) {
-      console.log(value);
-      this.total = this.value * this.price * 100;
+    checkOne() {
+      var f = !this.checkAll;
+      this.goods.forEach((item) => (item.isChecked = f));
     },
     onSubmit() {
       console.log("1");
+      console.log(this.result);
+    },
+    DeleteGoods(index) {
+      console.log(index);
+      this.goods.splice(index, 1);
+      console.log(this.goods);
+      // this.$dialog
+      //   .alert({
+      //     message: "弹窗内容",
+      //     theme: "round-button",
+      //   })
+      //   .then(() => {
+      //     // on close
+      //   });
     },
   },
 };
@@ -83,7 +175,51 @@ export default {
 .delete .van-submit-bar__bar {
   justify-content: space-between;
 }
-.title /deep/ .van-nav-bar__content{
-        background-color: #f2f2f2;
+.title /deep/ .van-nav-bar__content {
+  background-color: #f2f2f2;
+}
+.ion {
+  background: url(../../../static/img/shopping/delete.png) center center
+    no-repeat;
+  width: 3rem;
+  height: 3rem;
+  display: block;
+  background-size: 2.5rem;
+}
+.items {
+  height: 10rem;
+  display: flex;
+  border-bottom: 1rem solid rgb(245, 245, 245);
+}
+.item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex: 5;
+  padding-left: 1rem;
+}
+.item > div:nth-child(2) {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.item img {
+  height: 7rem;
+  width: 7rem;
+}
+.details {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1rem 0 1rem 0;
+}
+
+.stepper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 </style>

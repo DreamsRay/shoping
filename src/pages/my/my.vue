@@ -57,7 +57,7 @@ export default {
 .hd-background > div {
   margin: 1rem;
   color: #fff;
-  font-size: 0.24rem;
+  font-size: .8rem;
 }
 .hd-background > div:first-child {
   margin: 1rem 0 1rem 1rem;
