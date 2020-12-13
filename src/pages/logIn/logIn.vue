@@ -26,7 +26,7 @@
         :rules="[{ required: true, message: '请填写密码' }]"
       />
       <div class="signIn">
-          <span @click="signIn">免费注册</span>
+        <span @click="signIn">免费注册</span>
       </div>
       <div style="margin: 16px">
         <van-button round block color="#ff6700" native-type="submit">
@@ -45,12 +45,18 @@ export default {
       password: "",
     };
   },
+  mounted() {},
   methods: {
     onSubmit(values) {
       console.log("submit", values);
+      this.$axios
+        .get("https://www.easy-mock.com/mock/5fc639a963fe5543974decdf/shopping/user")
+        .then((response) => {
+          console.log(response.data);
+        });
     },
-    signIn(){
-        this.$router.push({path:'/signIn'})
+    signIn() {
+      this.$router.push({ path: "/signIn" });
     },
     onClickLeft() {
       this.$router.push({ path: "/my" });
@@ -60,11 +66,11 @@ export default {
 </script>
 
 <style scoped>
-.signIn{
-    text-align: end;
-    padding: .1rem 1rem;
-    color: #555;
-    font-size: 14px;
+.signIn {
+  text-align: end;
+  padding: 0.1rem 1rem;
+  color: #555;
+  font-size: 14px;
 }
 .title /deep/ .van-nav-bar__content {
   background-color: #f2f2f2;

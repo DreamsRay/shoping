@@ -6,7 +6,7 @@
     </div>
     <div class="order">
       <div>我的订单</div>
-      <div style="color: rgba(0,0,0,.5);">查看全部订单 <van-icon name="arrow" /></div>
+      <div @click="order" style="color: rgba(0,0,0,.5);">查看全部订单 <van-icon name="arrow" /></div>
     </div>
     <div>
       <van-grid>
@@ -30,11 +30,16 @@
       </van-grid>
     </div>
     <div class="ui-line"></div>
+    <Tabbar></Tabbar>
   </div>
 </template>
 
 <script>
+import Tabbar from "@/components/Tabbar.vue";
 export default {
+  components: {
+    Tabbar,
+  },
   data() {
     return {};
   },
@@ -42,6 +47,9 @@ export default {
     logIn() {
       this.$router.push({path:'/logIn'});
     },
+    order(){
+      this.$router.push({path:'/order'})
+    }
   },
 };
 </script>

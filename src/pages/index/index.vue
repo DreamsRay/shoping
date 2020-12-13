@@ -46,10 +46,7 @@
     </div>
     <div class="divider_line"></div>
     <div class="choiceness">
-      <img
-        src="../../../static/img/miTelevision/television.jpg"
-        alt=""
-      />
+      <img src="../../../static/img/miTelevision/television.jpg" alt="" />
     </div>
     <div class="items">
       <div class="item" v-for="(item, index) in miTelevision" :key="index">
@@ -68,10 +65,7 @@
     </div>
     <div class="divider_line"></div>
     <div class="choiceness">
-      <img
-        src="../../../static/img/mibook/mibook.jpg"
-        alt=""
-      />
+      <img src="../../../static/img/mibook/mibook.jpg" alt="" />
     </div>
     <div class="items">
       <div class="item" v-for="(item, index) in miBook" :key="index">
@@ -88,11 +82,16 @@
         </div>
       </div>
     </div>
+    <Tabbar></Tabbar>
   </div>
 </template>
 
 <script>
+import Tabbar from "@/components/Tabbar.vue";
 export default {
+  components: {
+    Tabbar,
+  },
   data() {
     return {
       value: "",
@@ -106,72 +105,81 @@ export default {
       redmi: [
         {
           name: "Redmi K30 4G",
-          img: "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
+          img:
+            "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
           recommend: "120Hz流速屏，全速热爱",
           price: 1722,
           priceOld: "2231",
         },
         {
           name: "Redmi K30 4G",
-          img: "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
+          img:
+            "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
           recommend: "120Hz流速屏，全速热爱",
           price: 1722,
           priceOld: "2231",
         },
         {
           name: "Redmi K30 4G",
-          img: "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
+          img:
+            "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
           recommend: "120Hz流速屏，全速热爱",
           price: 1722,
           priceOld: "2231",
         },
         {
           name: "Redmi K30 4G",
-          img: "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
+          img:
+            "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
           recommend: "120Hz流速屏，全速热爱",
           price: 1722,
           priceOld: "2231",
         },
         {
           name: "Redmi K30 4G",
-          img: "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
+          img:
+            "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
           recommend: "120Hz流速屏，全速热爱",
           price: 1722,
           priceOld: "2231",
         },
       ],
-      miTelevision:[
+      miTelevision: [
         {
           name: "小米电视4A 65英寸",
-          img: "//gw3.alicdn.com/bao/uploaded/i1/782731205/O1CN01F13vhd1KlvtuGz8rj_!!0-item_pic.jpg_210x210.jpg",
+          img:
+            "//gw3.alicdn.com/bao/uploaded/i1/782731205/O1CN01F13vhd1KlvtuGz8rj_!!0-item_pic.jpg_210x210.jpg",
           recommend: "4K HDR，人工智能语音系统",
           price: 2799,
           priceOld: "3231",
         },
         {
           name: "小米电视4A 65英寸",
-          img: "//gw3.alicdn.com/bao/uploaded/i1/782731205/O1CN01F13vhd1KlvtuGz8rj_!!0-item_pic.jpg_210x210.jpg",
+          img:
+            "//gw3.alicdn.com/bao/uploaded/i1/782731205/O1CN01F13vhd1KlvtuGz8rj_!!0-item_pic.jpg_210x210.jpg",
           recommend: "4K HDR，人工智能语音系统",
           price: 2799,
           priceOld: "3231",
         },
         {
           name: "小米电视4A 65英寸",
-          img: "//gw3.alicdn.com/bao/uploaded/i1/782731205/O1CN01F13vhd1KlvtuGz8rj_!!0-item_pic.jpg_210x210.jpg",
+          img:
+            "//gw3.alicdn.com/bao/uploaded/i1/782731205/O1CN01F13vhd1KlvtuGz8rj_!!0-item_pic.jpg_210x210.jpg",
           recommend: "4K HDR，人工智能语音系统",
           price: 2799,
           priceOld: "3231",
-        }
+        },
       ],
-      miBook:[
+      miBook: [
         {
           name: '小米笔记本15.6" MX110 独显版',
-          img: "//gw3.alicdn.com/bao/uploaded/i2/291333743/O1CN01eSQfUo1dWL6lYIwKa_!!291333743.png_210x210.jpg",
+          img:
+            "//gw3.alicdn.com/bao/uploaded/i2/291333743/O1CN01eSQfUo1dWL6lYIwKa_!!291333743.png_210x210.jpg",
           recommend: "4K HDR，人工智能语音系统",
           price: 2799,
           priceOld: "3231",
-        }
-      ]
+        },
+      ],
     };
   },
   methods: {
@@ -181,16 +189,16 @@ export default {
     my() {
       this.$router.push({ path: "/my" });
     },
-    Commodity(){
-      this.$router.push({path:'/Commodity'})
-      console.log(1)
-    }
+    Commodity() {
+      this.$router.push({ path: "/Commodity" });
+      console.log(1);
+    },
   },
 };
 </script>
 
 <style scoped>
-.background{
+.background {
   background-color: #f2f2f2;
 }
 .my-swipe .van-swipe-item {
@@ -233,10 +241,10 @@ export default {
   padding: 5px;
 }
 .items > div {
-    width: 45%;
-    margin: 3% 2%;
-    background-color: #ffff;
-    border-radius: 5px;
+  width: 45%;
+  margin: 3% 2%;
+  background-color: #ffff;
+  border-radius: 5px;
 }
 .items > div img {
   border-top-left-radius: 5px;
@@ -248,7 +256,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 }
 .introduce div {
   margin: 2% 0;

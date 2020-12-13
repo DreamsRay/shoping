@@ -1,17 +1,13 @@
 <template>
   <div id="app">  
-    <!-- <router-view/> -->
-    <Tabbar></Tabbar>
+    <router-view/>
+    <div style="height: 3rem;"></div>
   </div>
 </template>
 
 <script>
-import Tabbar from "@/components/Tabbar.vue";
 export default {
   name: 'App',
-  components: {
-    Tabbar,
-  },
 }
 </script>
 
