@@ -6,7 +6,7 @@ import classify from '@/pages/classify/classify' //分类
 import my from '@/pages/my/my' //我的
 import logIn from '@/pages/logIn/logIn' // 登录
 import signIn from '@/pages/logIn/signIn'; //注册
-import Commodity from '@/components/Commodity.vue' //商品详情
+import Commodity from '@/components/commodity.vue' //商品详情
 
 Vue.use(Router)
 
