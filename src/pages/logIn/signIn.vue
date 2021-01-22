@@ -18,6 +18,13 @@
         :rules="[{ required: true, message: '请填写用户名' }]"
       />
       <van-field
+        v-model="phone"
+        name="账号"
+        label="账号"
+        placeholder="账号"
+        :rules="[{ required: true, message: '请填写账号' }]"
+      />
+      <van-field
         v-model="password"
         type="password"
         name="密码"
@@ -26,8 +33,8 @@
         :rules="[{ required: true, message: '请填写密码' }]"
       />
       <van-field
-        v-model="password"
-        type="passwords"
+        v-model="passwords"
+        type="password"
         name="再次输入密码"
         label="再次输入密码"
         placeholder="再次输入密码"
@@ -48,16 +55,27 @@ export default {
     return {
       username: "",
       password: "",
-      passwords:''
+      passwords: "",
+      phone:''
     };
   },
   methods: {
     onSubmit(values) {
-      console.log("submit", values);
+      console.log("submit", this.username);
+       this.axios
+        .post("http://localhost:4000/add_user",{
+          username:this.username,
+          password:this.password,
+          passwords:this.passwords,
+          phone:this.phone
+        })
+        .then((response) => {
+          console.log(response.data);
+        });
     },
-    onClickLeft(){
-      this.$router.push({path:'/logIn'});
-    }
+    onClickLeft() {
+      this.$router.push({ path: "/logIn" });
+    },
   },
 };
 </script>

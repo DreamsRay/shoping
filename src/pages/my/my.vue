@@ -6,7 +6,9 @@
     </div>
     <div class="order">
       <div>我的订单</div>
-      <div style="color: rgba(0,0,0,.5);">查看全部订单 <van-icon name="arrow" /></div>
+      <div style="color: rgba(0, 0, 0, 0.5)">
+        查看全部订单 <van-icon name="arrow" />
+      </div>
     </div>
     <div>
       <van-grid>
@@ -38,10 +40,18 @@ export default {
   data() {
     return {};
   },
+  mounted(){
+    this.myUser();
+  },
   methods: {
     logIn() {
       this.$router.push({path:'/logIn'});
     },
+    myUser(){
+      this.$account.myUser((res)=>{
+          console.log(res.data);
+      })
+    }
   },
 };
 </script>
@@ -57,7 +67,7 @@ export default {
 .hd-background > div {
   margin: 1rem;
   color: #fff;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 .hd-background > div:first-child {
   margin: 1rem 0 1rem 1rem;
@@ -75,9 +85,9 @@ export default {
   font-size: 12px;
 }
 .ui-line {
-    height: 1rem;
-    background: #f5f5f5;
-    overflow: hidden;
-    clear: both;
+  height: 1rem;
+  background: #f5f5f5;
+  overflow: hidden;
+  clear: both;
 }
 </style>>

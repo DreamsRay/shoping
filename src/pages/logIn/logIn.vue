@@ -11,11 +11,11 @@
     </div>
     <van-form @submit="onSubmit">
       <van-field
-        v-model="username"
-        name="用户名"
-        label="用户名"
-        placeholder="用户名"
-        :rules="[{ required: true, message: '请填写用户名' }]"
+        v-model="phone"
+        name="账号"
+        label="账号"
+        placeholder="账号"
+        :rules="[{ required: true, message: '请填写账号' }]"
       />
       <van-field
         v-model="password"
@@ -26,7 +26,7 @@
         :rules="[{ required: true, message: '请填写密码' }]"
       />
       <div class="signIn">
-          <span @click="signIn">免费注册</span>
+        <span @click="signIn">免费注册</span>
       </div>
       <div style="margin: 16px">
         <van-button round block color="#ff6700" native-type="submit">
@@ -41,16 +41,33 @@
 export default {
   data() {
     return {
-      username: "",
+      phone: "",
       password: "",
     };
   },
+  created() {},
   methods: {
     onSubmit(values) {
-      console.log("submit", values);
+      // console.log("submit", values);
+      let data = {
+        phone: this.phone,
+        password: this.password,
+      };
+      this.$account.login(data).then((response) => {
+        this.$dialog
+          .alert({
+            message: response.data.msg,
+          })
+          .then(() => {
+            // on close
+            if (response.data.msg == "登录成功") {
+              this.$router.push({ path: "/my" });
+            }
+          });
+      });
     },
-    signIn(){
-        this.$router.push({path:'/signIn'})
+    signIn() {
+      this.$router.push({ path: "/signIn" });
     },
     onClickLeft() {
       this.$router.push({ path: "/my" });
@@ -60,11 +77,11 @@ export default {
 </script>
 
 <style scoped>
-.signIn{
-    text-align: end;
-    padding: .1rem 1rem;
-    color: #555;
-    font-size: 14px;
+.signIn {
+  text-align: end;
+  padding: 0.1rem 1rem;
+  color: #555;
+  font-size: 14px;
 }
 .title /deep/ .van-nav-bar__content {
   background-color: #f2f2f2;
