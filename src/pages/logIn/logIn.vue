@@ -11,11 +11,11 @@
     </div>
     <van-form @submit="onSubmit">
       <van-field
-        v-model="username"
-        name="用户名"
-        label="用户名"
-        placeholder="用户名"
-        :rules="[{ required: true, message: '请填写用户名' }]"
+        v-model="phone"
+        name="账号"
+        label="账号"
+        placeholder="账号"
+        :rules="[{ required: true, message: '请填写账号' }]"
       />
       <van-field
         v-model="password"
@@ -42,23 +42,30 @@ import api from '@/assets/js/api'
 export default {
   data() {
     return {
-      username: "",
+      phone: "",
       password: "",
     };
   },
-  mounted() {},
+  created() {},
   methods: {
-    async onSubmit(values) {
-      console.log("submit", values);
-      // this.$axios
-      //   .get("https://www.easy-mock.com/mock/5fc639a963fe5543974decdf/shopping/user")
-      //   .then((response) => {
-      //     console.log(response.data);
-      //   });
-      const result = (await api.user_login({phone:this.username,password:this.password})).data;
-      console.log(result);
-      alert(result.msg);
-      this.$router.push({path:'/my'});
+    onSubmit(values) {
+      // console.log("submit", values);
+      let data = {
+        phone: this.phone,
+        password: this.password,
+      };
+      this.$account.login(data).then((response) => {
+        this.$dialog
+          .alert({
+            message: response.data.msg,
+          })
+          .then(() => {
+            // on close
+            if (response.data.msg == "登录成功") {
+              this.$router.push({ path: "/my" });
+            }
+          });
+      });
     },
     signIn() {
       this.$router.push({ path: "/signIn" });
