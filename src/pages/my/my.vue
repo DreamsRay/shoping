@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="hd-background" @click="logIn">
-      <div><img src="../../../static/img/my/avatar.png" alt="" /></div>
-      <div>登录/注册</div>
+      <div><img :src="avatar" alt="" /></div>
+      <div v-text="uname">登录/注册</div>
     </div>
     <div class="order">
       <div>我的订单</div>
-      <div style="color: rgba(0,0,0,.5);">查看全部订单 <van-icon name="arrow" /></div>
+      <div @click="order" style="color: rgba(0,0,0,.5);">查看全部订单 <van-icon name="arrow" /></div>
     </div>
     <div>
       <van-grid>
@@ -30,19 +30,52 @@
       </van-grid>
     </div>
     <div class="ui-line"></div>
+    <Tabbar></Tabbar>
   </div>
 </template>
 
 <script>
+import Tabbar from "@/components/Tabbar.vue";
+import api from '@/assets/js/api'
+import {serverDomain} from '@/assets/js/config.js'
 export default {
+  components: {
+    Tabbar
+  },
   data() {
-    return {};
+    return {
+      avatar:"",
+      is_login:false,
+      uname:""
+    };
   },
   methods: {
     logIn() {
-      this.$router.push({path:'/logIn'});
+      if (this.is_login) {
+
+      }else{
+        this.$router.push({path:'/logIn'});
+      }
+    },
+    order(){
+      this.$router.push({path:'/order'});
     },
   },
+  async beforeMount() {
+      const data = (await api.get_my_user()).data; // 以后遇见promise对像可以这样取
+      console.log(data);
+      if (data) {
+          this.avatar = serverDomain + data.avatar;
+          console.log(this.avatar);
+        this.uname = data.uname;
+        this.is_login= true;
+      }else{
+        this.avatar = "../../../static/img/my/avatar.png";
+        this.uname = "登录/注册";
+        this.is_login= false;
+      }
+      console.log(data);
+  }
 };
 </script>
 

@@ -33,11 +33,16 @@
         </van-grid>
       </template>
     </van-tree-select>
+  <Tabbar></Tabbar>
   </div>
 </template>
 
 <script>
+import Tabbar from "@/components/Tabbar.vue";
 export default {
+  components: {
+    Tabbar,
+  },
   data() {
     return {
       active: 0,
