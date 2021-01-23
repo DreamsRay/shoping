@@ -1,8 +1,11 @@
 <template>
   <div>
-    <div class="hd-background" @click="logIn">
-      <div><img src="../../../static/img/my/avatar.png" alt="" /></div>
-      <div>登录/注册</div>
+    <div class="hd-background">
+      <div>
+        <img :src=" user.avatar || '../../../static/img/my/avatar.png'" alt="" />
+      </div>
+      <div v-if="user.uname == null" @click="logIn">登录/注册</div>
+      <div v-else>{{ user.uname }}</div>
     </div>
     <div class="order">
       <div>我的订单</div>
@@ -38,20 +41,23 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      user: [],
+    };
   },
-  mounted(){
+  mounted() {
     this.myUser();
   },
   methods: {
     logIn() {
-      this.$router.push({path:'/logIn'});
+      this.$router.push({ path: "/logIn" });
     },
-    myUser(){
-      this.$account.myUser((res)=>{
-          console.log(res.data);
-      })
-    }
+    myUser() {
+      this.$account.myUser().then((res) => {
+        console.log(res);
+        this.user = res.data;
+      });
+    },
   },
 };
 </script>

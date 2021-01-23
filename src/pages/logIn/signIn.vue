@@ -56,22 +56,36 @@ export default {
       username: "",
       password: "",
       passwords: "",
-      phone:''
+      phone: "",
     };
   },
   methods: {
     onSubmit(values) {
-      console.log("submit", this.username);
-       this.axios
-        .post("http://localhost:4000/add_user",{
-          username:this.username,
-          password:this.password,
-          passwords:this.passwords,
-          phone:this.phone
-        })
-        .then((response) => {
-          console.log(response.data);
+      // console.log("submit", this.username);
+      if (this.password != this.passwords) {
+        this.$dialog.alert({
+          message: "两次密码不同",
         });
+      } else {
+        let data = {
+          username: this.username,
+          password: this.password,
+          passwords: this.passwords,
+          phone: this.phone,
+        };
+        this.$account.addUser(data).then((response) => {
+          this.$dialog
+            .alert({
+              message: response.data.msg,
+            })
+            .then(() => {
+              // on close
+              if (response.data.msg == "注册成功") {
+                this.$router.push({ path: "/logIn" });
+              }
+            });
+        });
+      }
     },
     onClickLeft() {
       this.$router.push({ path: "/logIn" });

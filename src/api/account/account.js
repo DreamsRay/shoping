@@ -1,22 +1,35 @@
 import axios from 'axios';
+axios.defaults.baseURL = 'http://localhost:4000'; //设置路由字符串的默认字段
+axios.defaults.withCredentials = true; //配置允许跨域携带cookie
+axios.defaults.timeout = 100000; //配置超时时间
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'; //配置全局请求头
 
 let account = {
     login,  //登录
-    myUser
+    myUser,
+    addUser
 };
 
 function login(data) {
     // 用户登录
     return axios({
-        url: 'http://localhost:4000/user_login',
+        url: '/user_login',
         method: 'post',
         data: data
     });
 }
 function myUser() {
     return axios({
-        url: 'http://localhost:4000/get_my_user',
+        url: '/get_my_user',
         method: 'get',
+    });
+}
+
+function addUser(data) {
+    return axios({
+        url: '/add_user',
+        method: 'post',
+        data: data
     });
 }
 export default {
