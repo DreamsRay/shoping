@@ -43,7 +43,10 @@
       </van-submit-bar>
     </div>
     <div v-else>
-      <van-empty description="购物车竟然是空的" image="https://img.yzcdn.cn/vant/custom-empty-image.png">
+      <van-empty
+        description="购物车竟然是空的"
+        image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+      >
         <van-button type="default">去逛逛</van-button>
       </van-empty>
     </div>

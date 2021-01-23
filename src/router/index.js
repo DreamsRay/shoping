@@ -7,6 +7,9 @@ import my from '@/pages/my/my' //我的
 import logIn from '@/pages/logIn/logIn' // 登录
 import signIn from '@/pages/logIn/signIn'; //注册
 import Commodity from '@/components/commodity.vue' //商品详情
+import order from '@/pages/order/order' //订单
+import orderDetails from '@/pages/order/orderDetails'//订单详情
+import orderPay from '@/pages/order/orderPay' //订单详情
 
 Vue.use(Router)
 
@@ -46,6 +49,21 @@ export default new Router({
       path: '/Commodity',
       name: 'Commodity',
       component: Commodity
+    },
+    {
+      path: '/order',
+      name: 'order',
+      component: order,
+    },
+    {
+      path: '/orderDetails',
+      name: 'orderDetails',
+      component: orderDetails
+    },
+    {
+      path: '/orderPay',
+      name: 'orderPay',
+      component: orderPay
     },
   ]
 })

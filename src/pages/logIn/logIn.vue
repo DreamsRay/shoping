@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import api from '@/assets/js/api'
 export default {
   data() {
     return {
