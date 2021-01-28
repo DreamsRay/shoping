@@ -23,65 +23,28 @@
         <img :src="image" alt="" />
       </van-swipe-item>
     </van-swipe>
-    <div class="choiceness">
-      <img
-        src="../../../static/img/10d5e0e2a319079549175a8831417edc.jpg"
-        alt=""
-      />
-    </div>
-    <div class="items">
-      <div class="item" v-for="(item, index) in redmi" :key="index">
-        <div @click="Commodity"><img :src="item.img" alt="" /></div>
-        <div class="introduce">
-          <div>{{ item.name }}</div>
-          <div>
-            <span>￥{{ item.price }}起 </span
-            ><span> ￥{{ item.priceOld }}</span>
-          </div>
-          <div>
-            <van-button size="small" type="primary">立即购买</van-button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="divider_line"></div>
-    <div class="choiceness">
-      <img src="../../../static/img/miTelevision/television.jpg" alt="" />
-    </div>
-    <div class="items">
-      <div class="item" v-for="(item, index) in miTelevision" :key="index">
-        <div><img :src="item.img" alt="" /></div>
-        <div class="introduce">
-          <div>{{ item.name }}</div>
-          <div>
-            <span>￥{{ item.price }}起 </span
-            ><span> ￥{{ item.priceOld }}</span>
-          </div>
-          <div>
-            <van-button size="small" type="primary">立即购买</van-button>
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      @load="onLoad"
+    >
+      <div class="items">
+        <div class="item" v-for="(item, index) in redmi" :key="index">
+          <div @click="Commodity"><img :src="item.img" alt="" /></div>
+          <div class="introduce">
+            <div>{{ item.pname }}</div>
+            <div>
+              <span>￥{{ item.price }}起 </span
+              ><span> ￥{{ item.price_old }}</span>
+            </div>
+            <div>
+              <van-button size="small" type="primary">立即购买</van-button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="divider_line"></div>
-    <div class="choiceness">
-      <img src="../../../static/img/mibook/mibook.jpg" alt="" />
-    </div>
-    <div class="items">
-      <div class="item" v-for="(item, index) in miBook" :key="index">
-        <div><img :src="item.img" alt="" /></div>
-        <div class="introduce">
-          <div>{{ item.name }}</div>
-          <div>
-            <span>￥{{ item.price }}起 </span
-            ><span> ￥{{ item.priceOld }}</span>
-          </div>
-          <div>
-            <van-button size="small" type="primary">立即购买</van-button>
-          </div>
-        </div>
-      </div>
-    </div>
+    </van-list>
     <Tabbar></Tabbar>
   </div>
 </template>
@@ -102,87 +65,54 @@ export default {
         "static/img/4.jpg",
         "static/img/5.jpg",
       ],
-      redmi: [
-        {
-          name: "Redmi K30 4G",
-          img:
-            "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
-          recommend: "120Hz流速屏，全速热爱",
-          price: 1722,
-          priceOld: "2231",
-        },
-        {
-          name: "Redmi K30 4G",
-          img:
-            "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
-          recommend: "120Hz流速屏，全速热爱",
-          price: 1722,
-          priceOld: "2231",
-        },
-        {
-          name: "Redmi K30 4G",
-          img:
-            "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
-          recommend: "120Hz流速屏，全速热爱",
-          price: 1722,
-          priceOld: "2231",
-        },
-        {
-          name: "Redmi K30 4G",
-          img:
-            "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
-          recommend: "120Hz流速屏，全速热爱",
-          price: 1722,
-          priceOld: "2231",
-        },
-        {
-          name: "Redmi K30 4G",
-          img:
-            "//img.alicdn.com/img/i2/130797528/O1CN01rtjk1B25TsDt0LNc0_!!0-saturn_solar.jpg_210x210.jpg",
-          recommend: "120Hz流速屏，全速热爱",
-          price: 1722,
-          priceOld: "2231",
-        },
-      ],
-      miTelevision: [
-        {
-          name: "小米电视4A 65英寸",
-          img:
-            "//gw3.alicdn.com/bao/uploaded/i1/782731205/O1CN01F13vhd1KlvtuGz8rj_!!0-item_pic.jpg_210x210.jpg",
-          recommend: "4K HDR，人工智能语音系统",
-          price: 2799,
-          priceOld: "3231",
-        },
-        {
-          name: "小米电视4A 65英寸",
-          img:
-            "//gw3.alicdn.com/bao/uploaded/i1/782731205/O1CN01F13vhd1KlvtuGz8rj_!!0-item_pic.jpg_210x210.jpg",
-          recommend: "4K HDR，人工智能语音系统",
-          price: 2799,
-          priceOld: "3231",
-        },
-        {
-          name: "小米电视4A 65英寸",
-          img:
-            "//gw3.alicdn.com/bao/uploaded/i1/782731205/O1CN01F13vhd1KlvtuGz8rj_!!0-item_pic.jpg_210x210.jpg",
-          recommend: "4K HDR，人工智能语音系统",
-          price: 2799,
-          priceOld: "3231",
-        },
-      ],
-      miBook: [
-        {
-          name: '小米笔记本15.6" MX110 独显版',
-          img:
-            "//gw3.alicdn.com/bao/uploaded/i2/291333743/O1CN01eSQfUo1dWL6lYIwKa_!!291333743.png_210x210.jpg",
-          recommend: "4K HDR，人工智能语音系统",
-          price: 2799,
-          priceOld: "3231",
-        },
-      ],
+      redmi: [],
+      loading: false,
+      finished: false,
+      page: 1,
     };
   },
+  mounted() {
+    this.product();
+  },
   methods: {
+    onLoad() {
+      // 异步更新数据
+      // setTimeout 仅做示例，真实场景中一般为 ajax 请求
+      setTimeout(() => {
+      this.page++;
+      let data = {
+        page: this.page,
+      };
+      this.$api.product(data).then((res) => {
+        // console.log(res);
+        for (let item of res.data) {
+          item.img = "http://localhost:4000/" + JSON.parse(item.img);
+        }
+        // 加载状态结束
+        this.loading = false;
+        // 数据全部加载完成
+        if (res.data.length == 0) {
+          this.finished = true;
+        } else {
+         this.redmi = this.redmi.concat(res.data);
+        }
+        // console.log(this.redmi);
+      });
+
+      }, 3000);
+    },
+    product() {
+      let data = {
+        page: this.page,
+      };
+      this.$api.product(data).then((res) => {
+        // console.log(res);
+        for (let item of res.data) {
+          item.img = "http://localhost:4000/" + JSON.parse(item.img);
+        }
+        this.redmi = res.data;
+      });
+    },
     onSearch() {
       console.log(this.value);
     },

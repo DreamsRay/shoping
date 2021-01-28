@@ -130,6 +130,9 @@ export default {
       set() {},
     },
   },
+  mounted() {
+    this.myUser();
+  },
   methods: {
     onClickLeft() {
       this.$router.push({ path: "/" });
@@ -160,6 +163,14 @@ export default {
       //   .then(() => {
       //     // on close
       //   });
+    },
+    myUser() {
+      this.$api.myUser().then((res) => {
+        console.log(res);
+        if (res.data == "") {
+          this.$router.push({ path: "/logIn" });
+        }
+      });
     },
   },
 };

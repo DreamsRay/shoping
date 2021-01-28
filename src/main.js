@@ -8,8 +8,8 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import Vant from 'vant';
 import 'vant/lib/index.css';
-import account from './api/account/account';
-Vue.prototype.$account = account.account;
+import api from './api/api';
+Vue.prototype.$api = api.api;
 Vue.use(Vant);
 Vue.use(ElementUI);
 

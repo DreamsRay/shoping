@@ -41,7 +41,7 @@
         :rules="[{ required: true, message: '请填写密码' }]"
       />
       <div style="margin: 16px">
-        <van-button round block color="#ff6700" native-type="submit" @click="onSubmit({username, password})">
+        <van-button round block color="#ff6700" native-type="submit">
           注册
         </van-button>
       </div>
@@ -50,7 +50,6 @@
 </template>
 
 <script>
-import api from '@/assets/js/api'
 export default {
   data() {
     return {
@@ -61,7 +60,7 @@ export default {
     };
   },
   methods: {
-    onSubmit(values) {
+    onSubmit() {
       // console.log("submit", this.username);
       if (this.password != this.passwords) {
         this.$dialog.alert({
@@ -74,7 +73,7 @@ export default {
           passwords: this.passwords,
           phone: this.phone,
         };
-        this.$account.addUser(data).then((response) => {
+        this.$api.addUser(data).then((response) => {
           this.$dialog
             .alert({
               message: response.data.msg,

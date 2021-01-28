@@ -4,14 +4,14 @@ axios.defaults.withCredentials = true; //配置允许跨域携带cookie
 axios.defaults.timeout = 100000; //配置超时时间
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'; //配置全局请求头
 
-let account = {
+let api = {
     login,  //登录
-    myUser,
-    addUser
+    myUser, //获取用户信息
+    addUser,  //添加用户
+    product, //产品展示
 };
 
 function login(data) {
-    // 用户登录
     return axios({
         url: '/user_login',
         method: 'post',
@@ -32,6 +32,14 @@ function addUser(data) {
         data: data
     });
 }
+
+function product(data){
+    return axios({
+        url:'/get_home_product',
+        method:'get',
+        params:data
+    })
+}
 export default {
-    account
+    api
 };

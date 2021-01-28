@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import api from '@/assets/js/api'
 export default {
   data() {
     return {
@@ -54,7 +53,8 @@ export default {
         phone: this.phone,
         password: this.password,
       };
-      this.$account.login(data).then((response) => {
+      this.$api.login(data).then((response) => {
+        console.log(response)
         this.$dialog
           .alert({
             message: response.data.msg,
