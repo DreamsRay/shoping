@@ -31,7 +31,7 @@ new Vue({
 axios.interceptors.request.use(config => {
 //判断是否存在token，如果存在将每个页面的header都添加token
   if(store.state.token){
-    config.headers.common['XX-Token']=store.state.token   //此处的XX-Token要根据登录接口中请求头的名字来写
+    config.headers.common['Content-Type']=store.state.token   //此处的XX-Token要根据登录接口中请求头的名字来写
   }
  
   return config;

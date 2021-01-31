@@ -99,7 +99,7 @@ export default {
         // console.log(this.redmi);
       });
 
-      }, 3000);
+      }, 1000);
     },
     product() {
       let data = {

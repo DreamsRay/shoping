@@ -131,7 +131,7 @@ export default {
     },
   },
   mounted() {
-    this.myUser();
+    // this.myUser();
   },
   methods: {
     onClickLeft() {
