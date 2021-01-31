@@ -33,11 +33,11 @@ function addUser(data) {
     });
 }
 
-function product(data){
+function product(data) {
     return axios({
-        url:'/get_home_product',
-        method:'get',
-        params:data
+        url: '/get_home_product',
+        method: 'get',
+        params: data
     })
 }
 export default {
