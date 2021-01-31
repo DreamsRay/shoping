@@ -4,9 +4,9 @@
       <div>
         <img :src="user.avatar || '../../../static/img/my/avatar.png'" alt="" />
       </div>
-      <div v-if="user.uname == null" @click="logIn">登录/注册</div>
+      <div v-if="user.uname == null" @click="logIn()">登录/注册</div>
       <div v-else>{{ user.uname }}</div>
-      <div v-if="user.uname !=null">退出</div>
+      <div v-if="user.uname !=null" @click="logout()">退出</div>
       <div v-else></div>
     </div>
     <div class="order">
@@ -60,11 +60,15 @@ export default {
       this.$router.push({ path: "/logIn" });
     },
     myUser() {
-      this.$api.myUser().then((res) => {
-        console.log(res);
-        this.user = res.data;
-      });
+      // this.$api.myUser().then((res) => {
+      //   console.log(res);
+      //   this.user = res.data;
+      // });
     },
+    //退出
+    logout(){
+      
+    }
   },
 };
 </script>

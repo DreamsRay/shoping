@@ -13,7 +13,7 @@ import orderPay from '@/pages/order/orderPay' //订单详情
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   routes: [
     {
       path: '/',
@@ -66,4 +66,24 @@ export default new Router({
       component: orderPay
     },
   ]
-})
+});
+router.beforeEach((to, from, next) => {
+  if (to.path === '/Login') {   
+    next();     //直接跳转
+  }
+  else if (to.path === '/shopping'){  
+    let token = localStorage.getItem('token');    //获取本地存储的token值
+    if (token===null||token===''){    //若token为空则验证不成功，跳转到登录页面
+      next('/Login');
+    }
+    else{           //不为空则验证成功
+      next();
+    }
+  }
+  else{
+    next();
+  }
+});
+ 
+
+export default router;

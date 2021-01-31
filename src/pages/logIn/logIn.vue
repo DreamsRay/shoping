@@ -9,7 +9,7 @@
       >
       </van-nav-bar>
     </div>
-    <van-form @submit="onSubmit">
+    <van-form @submit="login">
       <van-field
         v-model="phone"
         name="账号"
@@ -38,34 +38,35 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
       phone: "",
       password: "",
+      userToken: "",
     };
   },
   created() {},
   methods: {
-    onSubmit(values) {
-      // console.log("submit", values);
+    ...mapMutations(["setToken"]),
+    login() {
       let data = {
         phone: this.phone,
         password: this.password,
       };
-      this.$api.login(data).then((response) => {
-        console.log(response)
-        this.$dialog
-          .alert({
-            message: response.data.msg,
-          })
-          .then(() => {
-            // on close
-            if (response.data.msg == "登录成功") {
-              this.$router.push({ path: "/my" });
-            }
+      this.$api
+        .login(data)
+        .then((res) => {
+          this.setToken({token: res.data.token});    //store中的为token赋值方法
+          this.$router.push("/my");
+          this.$dialog.alert({
+            message: res.data.msg,
           });
-      });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     signIn() {
       this.$router.push({ path: "/signIn" });
