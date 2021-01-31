@@ -19,10 +19,12 @@
       />
       <van-field
         v-model="password"
-        type="password"
+        :type="textType"
         name="密码"
         label="密码"
         placeholder="密码"
+        :right-icon="eye"
+        @click-right-icon="isShowPwd"
         :rules="[{ required: true, message: '请填写密码' }]"
       />
       <div class="signIn">
@@ -45,9 +47,14 @@ export default {
       phone: "",
       password: "",
       userToken: "",
+      textType:"",
+      eye:""
     };
   },
-  created() {},
+  created() {
+    this.textType = "password",
+    this.eye = "closed-eye"
+  },
   methods: {
     ...mapMutations(["setToken"]),
     login() {
@@ -74,6 +81,15 @@ export default {
     onClickLeft() {
       this.$router.push({ path: "/my" });
     },
+    isShowPwd(){
+      if (this.textType == "password") {
+        this.textType = "text";
+        this.eye = "eye-o"
+      } else {
+        this.textType = "password";
+        this.eye = "closed-eye"
+      }
+    }
   },
 };
 </script>
