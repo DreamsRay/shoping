@@ -9,6 +9,7 @@ let api = {
     myUser, //获取用户信息
     addUser,  //添加用户
     product, //产品展示
+    out, //退出
 };
 
 function login(data) {
@@ -39,6 +40,13 @@ function product(data) {
         method: 'get',
         params: data
     })
+}
+
+function out() {
+    return axios({
+        url: '/out_user',
+        method: 'get'
+    });
 }
 export default {
     api

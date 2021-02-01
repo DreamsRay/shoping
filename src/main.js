@@ -10,6 +10,8 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 import api from './api/api';
 import store from './store/store';
+import {setCookie,getCookie,delCookie} from '@/assets/cookie'
+Vue.prototype.$cookieStore = {setCookie,getCookie,delCookie}
 Vue.prototype.$api = api.api;
 Vue.use(Vant);
 Vue.use(ElementUI);

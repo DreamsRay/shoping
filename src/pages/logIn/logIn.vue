@@ -46,7 +46,6 @@ export default {
     return {
       phone: "",
       password: "",
-      userToken: "",
       textType:"",
       eye:""
     };

@@ -2,7 +2,14 @@
   <div>
     <div class="hd-background">
       <div>
-        <img :src="user.avatar ? '../../../static/img/my/avatar.png':'/public/img/default/avatar.png'" alt="" />
+        <img
+          :src="
+            user.avatar
+              ? '/public/img/default/avatar.png'
+              : '../../../static/img/my/avatar.png'
+          "
+          alt=""
+        />
       </div>
       <div v-if="user.uname == null" @click="logIn()">登录/注册</div>
       <div v-else>{{ user.uname }}</div>
@@ -52,6 +59,7 @@ export default {
       user: [],
     };
   },
+  created(){},
   mounted() {
     this.myUser();
   },
@@ -67,8 +75,17 @@ export default {
     },
     //退出
     logout() {
-      localStorage.clear();
-      this.$router.push("/login");
+      this.$dialog
+        .confirm({
+          message: "是否退出登录",
+        })
+        .then(() => {
+          localStorage.clear();
+          this.$api.out();
+          // window.location.reload();
+          this.$router.go(0);
+        })
+        .catch(() => {});
     },
   },
 };
