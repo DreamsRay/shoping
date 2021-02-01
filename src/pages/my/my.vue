@@ -2,7 +2,7 @@
   <div>
     <div class="hd-background">
       <div>
-        <img :src="user.avatar || '../../../static/img/my/avatar.png'" alt="" />
+        <img :src="user.avatar ? '../../../static/img/my/avatar.png':'/public/img/default/avatar.png'" alt="" />
       </div>
       <div v-if="user.uname == null" @click="logIn()">登录/注册</div>
       <div v-else>{{ user.uname }}</div>

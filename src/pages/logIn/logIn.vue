@@ -66,7 +66,6 @@ export default {
         .login(data)
         .then((res) => {
           this.setToken({token: res.data.token});    //store中的为token赋值方法
-          localStorage.getItem("token",res.data.token);
           this.$router.push("/my");
           this.$dialog.alert({
             message: res.data.msg,

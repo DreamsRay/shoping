@@ -131,7 +131,7 @@ export default {
     },
   },
   mounted() {
-    // this.myUser();
+    this.myUser();
   },
   methods: {
     onClickLeft() {
@@ -167,9 +167,9 @@ export default {
     myUser() {
       this.$api.myUser().then((res) => {
         console.log(res);
-        if (res.data == "") {
-          this.$router.push({ path: "/logIn" });
-        }
+        // if (res.data == "") {
+        //   this.$router.push({ path: "/logIn" });
+        // }
       });
     },
   },
